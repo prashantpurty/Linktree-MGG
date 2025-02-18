@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 import ActionLink from "./ActionLink";
 import videoSrc from "./assets/bg.mp4";
 
@@ -38,6 +38,21 @@ const actionLinks = [
 ];
 
 function MartianGuild() {
+  const memoizedLinks = useMemo(() => actionLinks, []);
+
+  const renderActionLinks = useCallback(() => {
+    return memoizedLinks.map((link, index) => (
+      <ActionLink
+        key={index}
+        text={link.text}
+        bgColor={link.bgColor}
+        textColor={link.textColor}
+        iconSrc={link.iconSrc}
+        href={link.href}
+      />
+    ));
+  }, [memoizedLinks]);
+
   return (
     <div className="relative min-h-screen flex items-center justify-center px-4 py-16 text-center text-white">
       {/* Background Video */}
@@ -53,7 +68,9 @@ function MartianGuild() {
 
       {/* Glassmorphic Container */}
       <div className="relative w-full max-w-4xl mx-auto backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8 overflow-hidden">
-
+        {/* Glow Effects */}
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-70"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-70"></div>
 
         {/* Content */}
         <div className="relative z-10">
@@ -72,16 +89,7 @@ function MartianGuild() {
 
           {/* Buttons Section */}
           <div className="w-full max-w-2xl mx-auto mt-8 space-y-4">
-            {actionLinks.map((link, index) => (
-              <ActionLink
-                key={index}
-                text={link.text}
-                bgColor={link.bgColor}
-                textColor={link.textColor}
-                iconSrc={link.iconSrc}
-                href={link.href}
-              />
-            ))}
+            {renderActionLinks()}
           </div>
         </div>
       </div>
@@ -89,4 +97,4 @@ function MartianGuild() {
   );
 }
 
-export default MartianGuild;
+export default React.memo(MartianGuild);
