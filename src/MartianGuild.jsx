@@ -3,7 +3,7 @@ import ActionLink from "./ActionLink";
 
 const actionLinks = [
   {
-    text: "Join the Martian Crew! 🚀 Chat & Conquer!",
+    text: "Join the Martian Crew!",
     bgColor: "bg-indigo-500",
     textColor: "text-white font-bold text-xl md:text-2xl",
     iconSrc:
