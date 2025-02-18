@@ -5,7 +5,7 @@ const actionLinks = [
   {
     text: "Join the Martian Crew! 🚀 Chat & Conquer!",
     bgColor: "bg-indigo-500",
-    textColor: "text-white",
+    textColor: "text-white font-bold text-xl md:text-2xl",
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/6fa0ed4202851ea2b315a9b76467f038848c45e40138bd59faebb15ae88821c0?apiKey=d8e705719ec941cca882091ae3698935&",
     href: "https://discord.gg/bc6xPzReuT",
@@ -13,7 +13,7 @@ const actionLinks = [
   {
     text: "Watch Epic Battles",
     bgColor: "bg-red-600",
-    textColor: "text-white",
+    textColor: "text-white font-bold text-xl md:text-2xl",
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/af4d30b35d16e7016a08d82e553943c5fd6306fc8aea70d266a5715bc9ed5ba3?apiKey=d8e705719ec941cca882091ae3698935&",
     href: "https://www.youtube.com/@Martiansgaminguild",
@@ -21,7 +21,7 @@ const actionLinks = [
   {
     text: "Follow Us on X",
     bgColor: "bg-neutral-300",
-    textColor: "text-black",
+    textColor: "text-black font-bold text-xl md:text-2xl",
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/e015838283f69c307f712b25f9d0279e2957da18fd40978a415ac54c50dc54fd?apiKey=d8e705719ec941cca882091ae3698935&",
     href: "https://x.com/martiansGGC",
@@ -29,7 +29,7 @@ const actionLinks = [
   {
     text: "Chat with us",
     bgColor: "bg-green-500",
-    textColor: "text-white",
+    textColor: "text-white font-bold text-xl md:text-2xl",
     iconSrc:
       "https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/964569bf38ef1d300c0b7be677ebecb0055e70f06945441f56de80a981d30ed2?apiKey=d8e705719ec941cca882091ae3698935&",
     href: "https://chat.whatsapp.com/JMjhvYCW1iLIuCKANHFNB8",
