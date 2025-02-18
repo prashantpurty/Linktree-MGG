@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import ActionLink from "./ActionLink";
 import videoSrc from "./assets/bg.mp4";
 
@@ -40,21 +40,23 @@ const actionLinks = [
 function MartianGuild() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef(null);
+
+  // Memoize the actionLinks array for optimization
   const memoizedLinks = useMemo(() => actionLinks, []);
 
+  // Handle video loading and content visibility
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const handleLoadedData = () => {
       setIsVideoLoaded(true);
-      // Show content after video is loaded with a slight delay for smooth transition
-      setTimeout(() => setIsContentVisible(true), 100);
+      setTimeout(() => setIsContentVisible(true), 100); // Delay content reveal for smoother transition
     };
 
     video.addEventListener('loadeddata', handleLoadedData);
-    
+
     // Preload the video
     video.load();
 
@@ -63,6 +65,7 @@ function MartianGuild() {
     };
   }, []);
 
+  // Render action links
   const renderActionLinks = useCallback(() => {
     return memoizedLinks.map((link, index) => (
       <ActionLink
@@ -102,7 +105,7 @@ function MartianGuild() {
       </video>
 
       {/* Glassmorphic Container */}
-      <div 
+      <div
         className={`relative w-full max-w-4xl mx-auto backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8 overflow-hidden transition-opacity duration-500 ${
           isContentVisible ? 'opacity-100' : 'opacity-0'
         }`}
