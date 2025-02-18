@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useState, useEffect, useRef } from "react";
 import ActionLink from "./ActionLink";
 import videoSrc from "./assets/bg.mp4";
 
@@ -38,7 +38,30 @@ const actionLinks = [
 ];
 
 function MartianGuild() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const memoizedLinks = useMemo(() => actionLinks, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleLoadedData = () => {
+      setIsVideoLoaded(true);
+      // Show content after video is loaded with a slight delay for smooth transition
+      setTimeout(() => setIsContentVisible(true), 100);
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData);
+    
+    // Preload the video
+    video.load();
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+    };
+  }, []);
 
   const renderActionLinks = useCallback(() => {
     return memoizedLinks.map((link, index) => (
@@ -55,19 +78,35 @@ function MartianGuild() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center px-4 py-16 text-center text-white">
+      {/* Loading State */}
+      {!isVideoLoaded && (
+        <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
+          <div className="text-white text-2xl animate-pulse">Loading...</div>
+        </div>
+      )}
+
       {/* Background Video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+        playsInline
+        preload="auto"
+        className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
+          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
       >
         <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
       {/* Glassmorphic Container */}
-      <div className="relative w-full max-w-4xl mx-auto backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8 overflow-hidden">
+      <div 
+        className={`relative w-full max-w-4xl mx-auto backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8 overflow-hidden transition-opacity duration-500 ${
+          isContentVisible ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         {/* Glow Effects */}
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-70"></div>
         <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-70"></div>
@@ -75,7 +114,7 @@ function MartianGuild() {
         {/* Content */}
         <div className="relative z-10">
           <img
-            loading="lazy"
+            loading="eager"
             src="https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/5fee169d5ef732d02b6c5b9469a9bf24c51ce259b638f476abafc8b2a85c2d31?apiKey=d8e705719ec941cca882091ae3698935&"
             alt="Martian Gaming Guild Logo"
             className="object-contain mx-auto w-[300px] max-md:w-[200px] drop-shadow-2xl animate-pulse"
