@@ -38,20 +38,22 @@ const actionLinks = [
 
 function MartianGuild() {
   return (
-    <div className="flex overflow-hidden flex-col justify-center items-center px-4 py-24 text-3xl font-medium text-center text-black bg-black max-md:px-5">
-      <div className="flex flex-col">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/5fee169d5ef732d02b6c5b9469a9bf24c51ce259b638f476abafc8b2a85c2d31?apiKey=d8e705719ec941cca882091ae3698935&"
-          alt="Martian Gaming Guild Logo"
-          className="object-contain mx-auto max-w-full aspect-[1.73] w-[367px]"
-        />
-        <h1 className="self-center mt-8 text-5xl font-bold text-white tracking-[2.5px] max-md:max-w-full max-md:text-4xl">
-          MARTIANS GAMING GUILD
-        </h1>
-        <p className="self-center mt-10 text-2xl font-bold text-white tracking-widest max-md:mt-10">
-          Unite, Play, Conquer
-        </p>
+    <div className="flex flex-col items-center px-4 py-16 text-center bg-black text-white max-md:py-12">
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/d8e705719ec941cca882091ae3698935/5fee169d5ef732d02b6c5b9469a9bf24c51ce259b638f476abafc8b2a85c2d31?apiKey=d8e705719ec941cca882091ae3698935&"
+        alt="Martian Gaming Guild Logo"
+        className="object-contain mx-auto w-[300px] max-md:w-[200px]"
+      />
+      <h1 className="mt-6 text-5xl font-bold tracking-wide max-md:text-3xl">
+        MARTIANS GAMING GUILD
+      </h1>
+      <p className="mt-6 text-xl font-semibold tracking-widest max-md:text-lg">
+        Unite, Play, Conquer
+      </p>
+
+      {/* Buttons Section */}
+      <div className="w-full max-w-2xl mt-8 space-y-6">
         {actionLinks.map((link, index) => (
           <ActionLink
             key={index}
