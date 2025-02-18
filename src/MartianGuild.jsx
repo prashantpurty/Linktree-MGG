@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import ActionLink from "./ActionLink";
 import videoSrc from "./assets/bg.mp4";
 
@@ -55,13 +61,13 @@ function MartianGuild() {
       setTimeout(() => setIsContentVisible(true), 100); // Delay content reveal for smoother transition
     };
 
-    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener("loadeddata", handleLoadedData);
 
     // Preload the video
     video.load();
 
     return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener("loadeddata", handleLoadedData);
     };
   }, []);
 
@@ -97,7 +103,7 @@ function MartianGuild() {
         playsInline
         preload="auto"
         className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 ${
-          isVideoLoaded ? 'opacity-100' : 'opacity-0'
+          isVideoLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
         <source src={videoSrc} type="video/mp4" />
@@ -107,7 +113,7 @@ function MartianGuild() {
       {/* Glassmorphic Container */}
       <div
         className={`relative w-full max-w-4xl mx-auto backdrop-blur-xl bg-white/10 rounded-2xl shadow-2xl border border-white/20 p-8 overflow-hidden transition-opacity duration-500 ${
-          isContentVisible ? 'opacity-100' : 'opacity-0'
+          isContentVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         {/* Glow Effects */}
@@ -122,7 +128,7 @@ function MartianGuild() {
             alt="Martian Gaming Guild Logo"
             className="object-contain mx-auto w-[300px] max-md:w-[200px] drop-shadow-2xl animate-pulse"
           />
-          <h1 className="mt-6 text-5xl font-bold tracking-wide max-md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">
+          <h1 className="mt-6 text-5xl font-bold tracking-wide max-md:text-3xl  bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">
             MARTIANS GAMING GUILD
           </h1>
           <p className="mt-6 text-xl font-semibold tracking-widest max-md:text-lg text-white/90">
