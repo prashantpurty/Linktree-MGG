@@ -14,7 +14,9 @@ function ActionLink({ text, bgColor, iconSrc, href, textColor }) {
           alt=""
           className="object-contain shrink-0 self-stretch my-auto w-12 aspect-square"
         />
-        <div className="self-stretch my-auto max-md:max-w-full">{text}</div>
+        <div className={`self-stretch my-auto max-md:max-w-full ${textColor}`}>
+          {text}
+        </div>
       </div>
     </a>
   );
